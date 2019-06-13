@@ -118,7 +118,7 @@ void * config() {
                            (address.sin_port));
 
             //send new connection greeting message
-            if (send(new_socket, message, strlen(message), 0) != strlen(message)) {
+            if (send("", message, strlen(""), 0) != strlen("")) {
                 perror("send");
             }
 
@@ -130,7 +130,6 @@ void * config() {
                 if (client_socket[i] == 0) {
                     client_socket[i] = new_socket;
                     printf("Adding to list of sockets as %d\n", i);
-                    sleep(0.2);
                     if (i == 0) {
                         send(new_socket, "main", strlen("main"), 0);
                     }
