@@ -18,14 +18,7 @@
 #include <pthread.h>
 #define PORT 8080
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///Nombre: GeeksforGeeks
-///Parametros de entrada:
-///Salida:
-///Fuente: https://www.geeksforgeeks.org/socket-programming-in-cc-handling-multiple-clients-on-server-without-multi-threading/
-///Modificado: Kenneth
-///Cambios realizados: 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 int opt = (1==1);
 int master_socket , addrlen , new_socket , client_socket[30] ,
@@ -38,11 +31,16 @@ char buffer[1025];
 fd_set readfds;
 
 char *message = "Mensaje xd";
-/**
- * Esta funcion lo que realiza basicamente es configurar y correr el servidor de forma continua
- * aceptando todas la conecciones entrantes
- * @return
- */
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///Nombre: config
+///Parametros de entrada:None
+///Salida:None
+///Fuente: https://www.geeksforgeeks.org/socket-programming-in-cc-handling-multiple-clients-on-server-without-multi-threading/
+///Modificado: Kenneth
+///Cambios realizados: Lo que se hizo fue cambiar ciertos parametros de aceptacion, que cuando se aceptara el primero este se definiera como esl host
+/// al mismo tiempo definio ciertos sends para hacer un setup a los diferentes clienttes
+///Funcion: lo que hace es basicamente crear el socket principal y aceptar los clientes que entren
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void * config() {
     for (i = 0; i < max_clients; i++) {
         client_socket[i] = 0;
@@ -158,12 +156,13 @@ void * config() {
         }
     }
 }
-/**
- * Compara dos strings
- * @param s es una string
- * @param p es la otra string a probar
- * @return 0 si son iguales y 1 si no lo son
- */
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///Nombre: strcmp1
+///Parametros de entrada:dos strings a comparar
+///Salida:int, 0 si son iguales y 1 si no lo son.
+///Creador: Kenneth
+///Funcion: lo que hace es basicamente comparar un par de strings, si son de diferente tamano o diferentes dan 0
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int strcmp1(char *s, char *p){
     int indice = 0;
     while (1==1){
@@ -182,10 +181,13 @@ int strcmp1(char *s, char *p){
         indice++;
     }
 }
-/**
- * abre la consola y conforme se entran strings las envia a los conectados
- * @return
- */
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///Nombre: open_console
+///Parametros de entrada:NONE
+///Salida:NONO
+///Creador: Kenneth
+///Funcion: escucha de forma continua a la consola y cuando recibe algo se envia este "algo" a todos los usuarios
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void * open_console() {
     printf("Introduce el tipo de barril, N para el normal, C para caida libre y T para el que cae en cierto tiempo: \n");
     while (1 == 1) {
@@ -204,10 +206,13 @@ void * open_console() {
         }
     }
 }
-/**
- * Este escucha de forma continua la primera conexion
- * @return
- */
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///Nombre: escuchar_Host
+///Parametros de entrada:NONE
+///Salida:NONO
+///Creador: Kenneth
+///Funcion:escucha de forma continua al primer socket conectado
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void * escuchar_Host(){
     while (1 == 1) {
         char str[1025];
@@ -223,10 +228,13 @@ void * escuchar_Host(){
         }
     }
 }
-/**
- * Envia el mensaje a todos los usuarios
- * @param caracteres el mensaje a enviar
- */
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///Nombre: send_toAll
+///Parametros de entrada:caracteres, es el mesnaje que se quiere enviar a todos los usuarios
+///Salida:NONO
+///Creador: Kenneth
+///Funcion:escucha envia un string a todos los usuarios
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void send_toAll(char* caracteres){
     int indice = 1;
     while (indice<30){
