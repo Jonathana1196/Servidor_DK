@@ -18,6 +18,15 @@
 #include <pthread.h>
 #define PORT 8080
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///Nombre: GeeksforGeeks
+///Parametros de entrada:
+///Salida:
+///Fuente: https://www.geeksforgeeks.org/socket-programming-in-cc-handling-multiple-clients-on-server-without-multi-threading/
+///Modificado: Kenneth
+///Cambios realizados: 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 int opt = (1==1);
 int master_socket , addrlen , new_socket , client_socket[30] ,
         max_clients = 30 , activity, i , valread , sd;
